@@ -4,24 +4,40 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MedianFinder {
+/**
+ * This class contains single static method to search median of the input collection
+ *
+ */
 
+ public class MedianFinder {
+
+
+    /**
+     * Returns the median of the given int array
+     *
+     * @param input the array for which the median should be found
+     * @return the median for a given input array
+     * @throws NullPointerException if the input array is null
+     * @throws RuntimeException if the input array is empty
+     *
+     */
     public static int getMedian(int[] input) {
-
-        if(input == null || input.length == 0)
-            throw new RuntimeException("null or empty input is not permitted!!!");
 
         //use TreeMap since it keeps key/value pairs in sorted order
         TreeMap<Integer, Integer> tm = new TreeMap<Integer, Integer>();
 
+
         //fill tree map
-        for(Integer i : input) {
+        for (Integer i : input) {
+
             Integer value = tm.get(i);
-            if(value == null)
+
+            if (value == null)
                 tm.put(i, 1);
             else
-                tm.put(i, ++value);
+                tm.put(i, value + 1);
         }
+
 
         //find median
         int pos = 0;
@@ -33,11 +49,8 @@ public class MedianFinder {
 
             pos += entry.getValue();
 
-            if(pos > middlePos)
+            if (pos >= middlePos)
                 return entry.getKey();
-
-            if(pos == middlePos)
-                return (((input.length % 2 != 0) || !it.hasNext()) ? entry.getKey() : ((entry.getKey() + it.next().getKey()) / 2));
 
         }
 

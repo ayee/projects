@@ -5,13 +5,13 @@ import org.junit.Test;
 
 public class AppTest {
 
-    @Test(expected = RuntimeException.class)
+    @Test (expected = NullPointerException.class)
     public void testNullInputShouldThrow() {
 
         MedianFinder.getMedian(null);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test (expected = RuntimeException.class)
     public void testEmptyInputShouldThrow() {
 
         MedianFinder.getMedian(new int[]{});
@@ -38,7 +38,7 @@ public class AppTest {
     @Test
     public void testEvenAmountOfNumbersInInput() {
 
-        assertEquals(22, MedianFinder.getMedian(new int[] {3, 13, 7, 5, 21, 23, 23, 40, 23, 14, 12, 56, 23, 29}));
+        assertEquals(21, MedianFinder.getMedian(new int[] {3, 13, 7, 5, 21, 23, 23, 40, 23, 14, 12, 56, 23, 29}));
     }
 
 }
